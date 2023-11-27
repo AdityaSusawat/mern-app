@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"; //imports the default export from the "express" module
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -14,7 +14,7 @@ import postRoutes from "./routes/posts.js";
 //import { error } from "console";
 //import { register } from "module";
 import { register } from "./controllers/auth.js";
-import { createPost } from "./controllers/post.js";
+import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 
 /* CONFIGURATION for middleware and different packages*/
