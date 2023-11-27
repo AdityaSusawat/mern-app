@@ -9,9 +9,13 @@ import morgan from "morgan";
 import path from "path"; //properly set the paths when we configure directories
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 //import { error } from "console";
 //import { register } from "module";
 import { register } from "./controllers/auth.js";
+import { createPost } from "./controllers/post.js";
+import { verifyToken } from "./middleware/auth.js";
 
 /* CONFIGURATION for middleware and different packages*/
 
@@ -45,10 +49,12 @@ const upload = multer({ storage }); //anytime we need to upload a file, we will 
 /* ROUTES WITH FILES */
 
 app.post("/auth/register", upload.single("picture"), register); //locally uploads the picture in "public/assets" ; register functioned imported from auth.js
-
+app.post("/post", verifyToken, upload.single("picture"), createPost); //when we send the image from frontend, it will upload in the local ; createPost controller
 /* ROUTES */
 
 app.use("/auth", authRoutes); //helps set up the routes ; authRoutes middleware will only be executed if the URL starts with "/auth"
+app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
 
 /* MONGOOSE SETUP */
 
