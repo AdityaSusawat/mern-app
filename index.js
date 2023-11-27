@@ -8,6 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path"; //properly set the paths when we configure directories
 import { fileURLToPath } from "url";
+import authRoutes from "./routes/auth.js";
 //import { error } from "console";
 //import { register } from "module";
 import { register } from "./controllers/auth.js";
@@ -43,7 +44,11 @@ const upload = multer({ storage }); //anytime we need to upload a file, we will 
 
 /* ROUTES WITH FILES */
 
-app.post("/auth/register", upload.single("picture"), register); //locally uploads the picture in "public/assets"
+app.post("/auth/register", upload.single("picture"), register); //locally uploads the picture in "public/assets" ; register functioned imported from auth.js
+
+/* ROUTES */
+
+app.use("/auth", authRoutes); //helps set up the routes ; authRoutes middleware will only be executed if the URL starts with "/auth"
 
 /* MONGOOSE SETUP */
 
