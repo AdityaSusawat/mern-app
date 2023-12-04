@@ -41,8 +41,8 @@ const Navbar = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `User One`;
-  //const fullName = `${user.firstName} ${user.LastName}`; //this is causing an error?? Maybe because our users are empty, that's why putting a static name makes it work again?
+  //const fullName = `User One`;
+  const fullName = `${user.firstName} ${user.lastName}`; //this is (was) causing an error?? Maybe because our users are empty, that's why putting a static name makes it work again?
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
