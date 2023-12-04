@@ -11,6 +11,7 @@ import { themeSettings } from "./theme.js"; //check
 function App() {
   const mode = useSelector((state) => state.mode); //grabbed data from the local store (grab the state and the correct reducer)
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const isAuth = Boolean(useSelector((state) => state.token)); //if token exists then we are authorised
 
   return (
     <div className="app">
@@ -19,8 +20,14 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<LoginPage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/profile/:userId" element={<ProfilePage />} />
+            <Route
+              path="/home"
+              element={isAuth ? <HomePage /> : <Navigate to="/" />} //if they don't have a token, they will be navigated back
+            />
+            <Route
+              path="/profile/:userId"
+              element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
+            />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
