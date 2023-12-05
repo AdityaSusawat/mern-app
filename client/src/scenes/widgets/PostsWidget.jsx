@@ -35,7 +35,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     } else {
       getPosts();
     }
-  }, []); //eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -70,4 +70,4 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   );
 };
 
-export default PostWidget;
+export default PostsWidget;
