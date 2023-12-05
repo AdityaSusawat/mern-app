@@ -25,16 +25,12 @@ export const authSlice = createSlice({
       state.user = null;
       state.token = null;
     },
-    setFriends: (state, action) => {
-      //will set the friends in the local state
-      if (state.user) {
-        state.user.friends = action.payload.friends;
-      } else {
-        console.error("No friends found");
-      }
-    },
     setPosts: (state, action) => {
-      state.posts = action.payload.posts;
+      try {
+        state.posts = action.payload.posts;
+      } catch (error) {
+        console.error("Error setting posts:", error);
+      }
     },
     setPost: (state, action) => {
       const updatedPosts = state.posts.map((post) => {
@@ -42,6 +38,14 @@ export const authSlice = createSlice({
         return post;
       });
       state.posts = updatedPosts;
+    },
+    setFriends: (state, action) => {
+      //will set the friends in the local state
+      if (state.user) {
+        state.user.friends = action.payload.friends;
+      } else {
+        console.error("No friends found");
+      }
     },
   },
 });

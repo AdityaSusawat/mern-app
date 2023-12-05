@@ -52,16 +52,7 @@ const MyPostWidget = ({ picturePath }) => {
       body: formData,
     });
 
-    if (!response.ok) {
-      console.error(
-        `Custom Error: ${response.status} - ${response.statusText}`
-      );
-      // Handle the error as needed
-      return;
-    } //DELETE LATER
-
     const posts = await response.json();
-    console.log("Received response successfully\n" + { posts }); //DELETE LATER
     dispatch(setPosts({ posts }));
     setImage(null);
     setPost("");
@@ -91,7 +82,7 @@ const MyPostWidget = ({ picturePath }) => {
           p="1rem"
         >
           <Dropzone
-            acceptedFiles=".jpg, .jpeg, .png"
+            acceptedFiles=".jpg,.jpeg,.png"
             multiple={false}
             onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
           >

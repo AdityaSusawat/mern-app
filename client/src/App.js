@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux"; //if we want to grab data from the local store
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { themeSettings } from "./theme.js"; //check
+import { themeSettings } from "./theme"; //check
 
 function App() {
   const mode = useSelector((state) => state.mode); //grabbed data from the local store (grab the state and the correct reducer)
