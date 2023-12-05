@@ -1,5 +1,4 @@
-import express from "express"; //imports the default export from the "express" module
-import bodyParser from "body-parser";
+import express from "express"; //import
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -30,8 +29,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use * bodyParser.urlencoded({ limit: "30mb", extended: true });
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors()); // will invoke our cross origin resource sharing policy
 app.use("/assets", express.static(path.join(__dirname, "public/assets"))); //sets the directory of where we keep our assets
 
@@ -52,7 +51,7 @@ const upload = multer({ storage }); //anytime we need to upload a file, we will 
 /* ROUTES WITH FILES */
 
 app.post("/auth/register", upload.single("picture"), register); //locally uploads the picture in "public/assets" ; register functioned imported from auth.js
-app.post("/post", verifyToken, upload.single("picture"), createPost); //when we send the image from frontend, it will upload in the local ; createPost controller
+app.post("/posts", verifyToken, upload.single("picture"), createPost); //when we send the image from frontend, it will upload in the local ; createPost controller
 /* ROUTES */
 
 app.use("/auth", authRoutes); //helps set up the routes ; authRoutes middleware will only be executed if the URL starts with "/auth"
@@ -64,8 +63,8 @@ app.use("/posts", postRoutes);
 const PORT = process.env.PORT || 6001; //backup port
 mongoose
   .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    //useNewUrlParser: true,
+    //useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));

@@ -80,15 +80,11 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch(
-      //to save whatever is returned from the backend
-      "http://localhost:3001/auth/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      }
-    );
+    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
     if (loggedIn) {
@@ -100,7 +96,7 @@ const Form = () => {
       );
       navigate("/home");
     }
-  };
+  }; //to save whatever is returned from the backend
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     if (isLogin) await login(values, onSubmitProps);
@@ -190,7 +186,7 @@ const Form = () => {
                   p="1rem"
                 >
                   <Dropzone
-                    acceptedFiles=".jpg, .jpeg, .png"
+                    acceptedFiles=".jpg,.jpeg,.png"
                     multiple={false}
                     onDrop={(acceptedFiles) =>
                       setFieldValue("picture", acceptedFiles[0])
