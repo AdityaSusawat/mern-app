@@ -31,7 +31,7 @@ const PostWidget = ({
   const likeCount = Object.keys(likes).length;
   //const likeCount = 10;
 
-  console.log(`like count: ${likeCount}`); //DELETE LATER ; No output
+  //console.log(`like count: ${likeCount}`); //DELETE LATER ; No output
 
   const { palette } = useTheme();
   const main = palette.neutral.main;
